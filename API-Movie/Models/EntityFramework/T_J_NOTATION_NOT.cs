@@ -28,7 +28,7 @@ namespace API_Movie.Models.EntityFramework
             get { return flm_id; }
             set { flm_id = value; }
         }
-
+        // Coucou c'est moi
         [Column("not_note", TypeName = "int")]
         [Range(0,5)]
         public int Note

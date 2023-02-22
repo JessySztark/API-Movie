@@ -41,6 +41,11 @@ namespace API_Movie.Controllers
             return t_E_UTILISATEUR_UTL;
         }
 
+        public async Task<ActionResult<T_E_UTILISATEUR_UTL>>GetUtilisateurByEmail(string email)
+        {
+            return await _context.UTL.FindAsync(email);
+        }
+
         // PUT: api/Utilisateurs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

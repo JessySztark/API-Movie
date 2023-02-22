@@ -14,6 +14,7 @@ namespace API_Movie.Models.EntityFramework
         private int not_note;
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [InverseProperty("utl_id")]
         public int UtilisateurId
         {
@@ -21,7 +22,6 @@ namespace API_Movie.Models.EntityFramework
             set { utl_id = value; }
         }
 
-        [Key]
         [InverseProperty("flm_id")]
         public int FilmId
         {
@@ -56,10 +56,7 @@ namespace API_Movie.Models.EntityFramework
                 .HasForeignKey(n => n.FilmId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .HasConstraintName("fk_not_flm");
-            });
 
-            modelBuilder.Entity<T_J_NOTATION_NOT>(entity =>
-            {
                 entity.HasOne(n => n.UtilisateurNotant)
                 .WithMany(f => f.NotesUtilisateur)
                 .HasForeignKey(n => n.UtilisateurId)

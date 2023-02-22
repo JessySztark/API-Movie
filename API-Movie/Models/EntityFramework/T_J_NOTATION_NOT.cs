@@ -21,14 +21,14 @@ namespace API_Movie.Models.EntityFramework
             set { utl_id = value; }
         }
 
-        [Key]
+        
         [InverseProperty("flm_id")]
         public int FilmId
         {
             get { return flm_id; }
             set { flm_id = value; }
         }
-        // Coucou c'est moi
+        
         [Column("not_note", TypeName = "int")]
         [Range(0,5)]
         public int Note

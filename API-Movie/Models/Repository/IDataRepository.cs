@@ -6,7 +6,7 @@ namespace API_Movie.Models.Repository
     {
         ActionResult<IEnumerable<TEntity>> GetAll();
         ActionResult<TEntity> GetById(int id);
-        ActionResult<TEntity> GetByString(string str);
+        Task<ActionResult<TEntity>> GetByStringAsync(string str);
         void Add(TEntity entity);
         void Update(TEntity entityToUpdate, TEntity entity);
         void Delete(TEntity entity);

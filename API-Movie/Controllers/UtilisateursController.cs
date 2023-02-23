@@ -50,7 +50,7 @@ namespace API_Movie.Controllers
         [ActionName("GetByEmail")]
         public async Task<ActionResult<T_E_UTILISATEUR_UTL>> GetT_E_UTILISATEUR_UTL_byEmail(string email)
         {
-            var utilisateur = dataRepository.GetByString(email);
+            var utilisateur = await dataRepository.GetByStringAsync(email);
 
             if (utilisateur == null)
             {

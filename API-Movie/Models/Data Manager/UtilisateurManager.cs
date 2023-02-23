@@ -2,6 +2,7 @@
 using API_Movie.Models.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace API_Movie.Models.Data_Manager
 {
@@ -21,14 +22,14 @@ namespace API_Movie.Models.Data_Manager
         {
             return filmsDbContext.UTL.FirstOrDefault(u => u.UtilisateurId == id);
         }
-        public ActionResult<T_E_UTILISATEUR_UTL> GetByString(string mail)
+        public async Task<ActionResult<T_E_UTILISATEUR_UTL>> GetByStringAsync(string mail)
         {
-            return filmsDbContext.UTL.FirstOrDefault(u => u.Mail.ToUpper() == mail.ToUpper());
+            return await filmsDbContext.UTL.FirstOrDefaultAsync(u => u.Mail.ToUpper() == mail.ToUpper());
         }
-        public void Add(T_E_UTILISATEUR_UTL entity)
+        public async Task AddAsync(T_E_UTILISATEUR_UTL entity)
         {
-            filmsDbContext.UTL.Add(entity);
-            filmsDbContext.SaveChanges();
+            await filmsDbContext.UTL.AddAsync(entity);
+            await filmsDbContext.SaveChangesAsync();
         }
         public void Update(T_E_UTILISATEUR_UTL utilisateur, T_E_UTILISATEUR_UTL entity)
         {

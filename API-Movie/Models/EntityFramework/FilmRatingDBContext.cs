@@ -8,18 +8,23 @@ namespace API_Movie.Models.EntityFramework
 
         public FilmRatingDBContext() { }
 
+        public FilmRatingDBContext(DbContextOptions<FilmRatingDBContext> options)
+        : base(options)
+        {
+        }
+
         public virtual DbSet<T_E_FILM_FLM> FLM { get; set; }
         public virtual DbSet<T_E_UTILISATEUR_UTL> UTL { get; set; }
         public virtual DbSet<T_J_NOTATION_NOT> NOT { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseLoggerFactory(Mylogs)
                     .EnableSensitiveDataLogging()
-                    .UseNpgsql("Server=localhost; port=5432; Database=FilmsDB; uid=postgres; password=postgres;");
+                    .UseNpgsql("Server=localhost; port=5432; Database=ApiMovie; uid=postgres; password=postgres;");
             }
-        }
+        }*/
     }
 }

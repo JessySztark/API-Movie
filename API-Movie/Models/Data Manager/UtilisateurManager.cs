@@ -65,7 +65,7 @@ namespace API_Movie.Models.Data_Manager
             throw new NotImplementedException();
         }
 
-        ActionResult<T_E_UTILISATEUR_UTL> IDataRepository<T_E_UTILISATEUR_UTL>.GetByString(string str)
+        public void Add(T_E_UTILISATEUR_UTL entity)
         {
             throw new NotImplementedException();
         }

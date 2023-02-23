@@ -1,30 +1,30 @@
+using API_Movie.Models.Data_Manager;
 using API_Movie.Models.EntityFramework;
+using API_Movie.Models.Repository;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
+static void Main(string[] args){
+    var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+    builder.Services.AddControllers();
+    builder.Services.AddDbContext<FilmRatingDBContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("MovieDBContext")));
+    builder.Services.AddScoped<IDataRepository<T_E_UTILISATEUR_UTL>, UtilisateurManager>();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
-builder.Services.AddControllers();
-builder.Services.AddDbContext<FilmRatingDBContext>(options =>
-  options.UseNpgsql(builder.Configuration.GetConnectionString("MovieDBContext")));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+    var app = builder.Build();
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
 
-var app = builder.Build();
+    app.UseHttpsRedirection();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
